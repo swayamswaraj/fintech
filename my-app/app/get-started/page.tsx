@@ -3,6 +3,10 @@
 import Link from "next/link";
 import { Check, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { auth } from "@/lib/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 const benefits = [
   "Automated portfolio rebalancing",
@@ -13,6 +17,26 @@ const benefits = [
 ];
 
 export default function GetStartedPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignup = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!email || !password) {
+    alert("Please enter email and password");
+    return;
+  }
+
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    router.push("/dashboard");
+  } catch (error: any) {
+    alert(error.message);
+  }
+};
+
   return (
     <div className="flex min-h-screen w-full flex-col lg:flex-row">
       {/* Left Panel - Value Prop */}
@@ -74,7 +98,7 @@ export default function GetStartedPage() {
             </div>
           </div>
 
-          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-6" onSubmit={handleSignup}>
             <div className="grid gap-6 md:grid-cols-2">
               <div className="space-y-2">
                 <label className="text-xs font-bold uppercase tracking-wide text-slate-400">
@@ -126,13 +150,13 @@ export default function GetStartedPage() {
                 <label className="text-xs font-bold uppercase tracking-wide text-slate-400">
                   Work email
                 </label>
-                <input type="email" className="form-input" />
+                <input  type="email" placeholder="Email" className="form-input" onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold uppercase tracking-wide text-slate-400">
-                  Phone
+                  Password
                 </label>
-                <input type="tel" className="form-input" />
+                <input type="password" placeholder="Password" className="form-input" onChange={(e) => setPassword(e.target.value)} />
               </div>
             </div>
 
@@ -187,10 +211,11 @@ export default function GetStartedPage() {
             </div>
 
             <Button
+              type="submit"
               size="lg"
               className="mt-4 h-14 w-full bg-blue-600 text-lg hover:bg-blue-700"
             >
-              Next Step
+              Submit
             </Button>
           </form>
         </div>
