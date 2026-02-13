@@ -31,35 +31,36 @@ const features = [
 
 const Features = () => {
   return (
-    <section className="bg-background py-20 md:py-28">
+    <section className="bg-slate-50 py-20 md:py-28">
       <div className="container">
-        <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-3xl font-bold text-navy md:text-4xl">
             Everything You Need to Invest Smarter
           </h2>
-          <p className="mx-auto max-w-2xl text-muted-foreground">
-            Powerful tools built for both individual investors and wealth management firms.
+          <p className="mx-auto max-w-2xl text-slate-600">
+            Powerful tools built for both individual investors and wealth
+            management firms.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {features.map((feature, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <Card className="group h-full border-border bg-background transition-shadow hover:shadow-lg">
-                <CardContent className="p-6">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
-                    <feature.icon className="h-6 w-6" />
+              <Card className="group h-full border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-xl cursor-default">
+                <CardContent className="p-8">
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-orange-100 text-orange-600 transition-colors group-hover:bg-orange-600 group-hover:text-white">
+                    <feature.icon className="h-7 w-7" />
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold text-foreground">
+                  <h3 className="mb-3 text-xl font-bold text-navy">
                     {feature.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
+                  <p className="text-sm leading-relaxed text-slate-600">
                     {feature.description}
                   </p>
                 </CardContent>
