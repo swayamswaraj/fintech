@@ -119,6 +119,15 @@ export default function LoginPage() {
               Log In
             </Button>
           </form>
+          <div className="text-sm text-slate-400">
+              New User:{" "}
+              <Link
+                href="/get-started"
+                className="text-blue-500 hover:text-blue-400 hover:underline"
+              >
+                Sign up
+              </Link>
+            </div>
 
           <div className="flex flex-col gap-4 border-t border-slate-100 pt-8 text-center text-xs text-slate-500 sm:flex-row sm:justify-center">
             <Link href="#" className="hover:text-blue-600 hover:underline">
