@@ -1,5 +1,6 @@
 import "./globals.css";
 import Providers from "./providers";
+import ChatbotIcon from "@/components/Chatbot/ChatbotIcon";
 
 export const metadata = {
   title: "My App",
@@ -15,6 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>{children}</Providers>
+        <ChatbotIcon />
       </body>
     </html>
   );
